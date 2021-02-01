@@ -25,7 +25,7 @@ class LinkedList:
             last_node = last_node.next
         last_node.next = new_node
     
-    #Delete node
+    #Delete node by value
     def delete(self, data):
         #If data is the head
         current_node = self.head
@@ -49,6 +49,30 @@ class LinkedList:
         #If we did, we get to this point of the code
         prev.next = current_node.next
         current_node = None
+         
+    #Delete node by index/position
+    def delete_pos(self, pos):
+        #If the list has a head(is not empty)
+        if self.head:  
+            #Lets check if POS is the head
+            cur_node = self.head
+            if pos == 0:
+                self.head = cur_node.next
+                cur_node = None
+                return
+        prev = None
+        count = 0
+        #Lets walk the LinkedList, untill we found the POS
+        while cur_node and count != pos:
+            prev = cur_node
+            cur_node = cur_node.next
+            count += 1
+        
+        if cur_node is None:
+            return
+        prev.next = cur_node.next
+        cur_node = None
+        
             
 llist = LinkedList()
 llist.append("A")
