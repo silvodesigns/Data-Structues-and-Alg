@@ -1,3 +1,5 @@
+from merge_sorted_ll import *
+
 class Node:
     def __init__(self, data):
         self.data = data
@@ -24,13 +26,28 @@ class LinkedList:
         while last_node.next:
             last_node = last_node.next
         last_node.next = new_node
-    
-    
+        
+    def merge2(self, ll):
+        merge_sorted(self,ll)
+        
 llist = LinkedList()
-llist.append("A")
-llist.append("B")
-llist.append("C")
-llist.append("D")
+llist2 = LinkedList()
+
+llist.append(1)
+llist.append(3)
+llist.append(5)
+llist.append(8)
+
+llist2.append(2)
+llist2.append(4)
+llist2.append(7)
 
 
-llist.print_list()  
+
+
+#llist.print_list()  
+#llist2.print_list() 
+
+llist.merge2(llist2) 
+llist.print_list()
+
