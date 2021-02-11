@@ -40,3 +40,41 @@ class BST:
         
     def search(self, value):
         self.root.search(value)
+        
+    def pre_order(self, node, traverse):
+        """root, left , right"""
+        if node:
+            traverse += (str(node.value) + "--")
+            traverse = self.pre_order(node.left, traverse)
+            traverse = self.pre_order(node.right, traverse)
+        return traverse
+    
+    
+    def in_order(self, node, traverse):
+        """left, root , right"""
+        if node:
+            traverse = self.in_order(node.left, traverse)
+            traverse += (str(node.value) + "--")
+            traverse = self.in_order(node.right, traverse)
+        return traverse
+    
+    def post_order(self, node, traverse):
+        "left, right, root"
+        if node:
+            traverse = self.post_order(node.left, traverse)
+            traverse = self.post_order(node.right, traverse)
+            traverse += (str(node.value) + "--")
+        return traverse
+        
+
+#Binary Tree Traversal
+tree = BST(1)
+tree.root.right = BSTNode(2)
+tree.root.left = BSTNode(3)
+tree.root.right.right = BSTNode(6)
+tree.root.right.left = BSTNode(8)
+tree.root.left.left = BSTNode(5)
+
+print(tree.pre_order(tree.root, ""))
+print(tree.in_order(tree.root, ""))
+print(tree.post_order(tree.root, ""))
