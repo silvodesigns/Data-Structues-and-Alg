@@ -1,4 +1,5 @@
 #Binary Search Tree
+from Queue2 import Queue
 class BSTNode:
     def __init__(self, value):
         self.value = value
@@ -18,6 +19,7 @@ class BSTNode:
                 self.right.insert(value)
                 
     def search(self, target):
+        
         if self.value == target:
             return self
         elif target < self.value:
@@ -65,7 +67,24 @@ class BST:
             traverse = self.post_order(node.right, traverse)
             traverse += (str(node.value) + "--")
         return traverse
+      
+    def level_order(self, node):
+        if node is None:
+            return
         
+        queue = Queue()
+        queue.enqueue(node)
+        
+        traversal = ""
+        while len(queue) > 0:
+            traversal += str(queue.peek()) + "--"
+            node = queue.dequeue()
+            
+            if node.left:
+                queue.enqueue(node.left)
+            if node.right:
+                queue.enqueue(node.right)
+        return traversal
 
 #Binary Tree Traversal
 tree = BST(1)
@@ -78,3 +97,4 @@ tree.root.left.left = BSTNode(5)
 print(tree.pre_order(tree.root, ""))
 print(tree.in_order(tree.root, ""))
 print(tree.post_order(tree.root, ""))
+print(tree.level_order(tree.root))
